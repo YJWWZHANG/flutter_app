@@ -5,46 +5,63 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appName = '自定义主题';
     return MaterialApp(
-        title: appName,
-        theme: new ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Colors.lightGreen[600],
-          accentColor: Colors.orange[600],
-        ),
-        home: new MyHomePage(
-          title: appName,
-        ));
+      title: 'Flutter Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue
+      ),
+      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+    );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   final String title;
 
   MyHomePage({Key key, @required this.title}) : super(key: key);
 
   @override
+  _MyHomePageState createState() {
+    return new _MyHomePageState();
+  }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  var _counter = 0;
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(title),
+        title: new Text(widget.title),
       ),
       body: new Center(
-        child: new Container(
-          color: Theme.of(context).accentColor,
-          child: new Text(
-            '带有背景颜色的文本组件',
-            style: Theme.of(context).textTheme.title,
-          ),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text(
+              'You have pushed the button this many times:'
+            ),
+            new Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            )
+          ],
         ),
       ),
-      floatingActionButton: new Theme(
-          data: Theme.of(context).copyWith(accentColor: Colors.grey),
-          child: new FloatingActionButton(
-            onPressed: null,
-            child: new Icon(Icons.computer),
-          )),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
+      ),
     );
   }
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
 }
+
