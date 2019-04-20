@@ -1,67 +1,33 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp(
+  items: new List<String>.generate(500, (i) => "Item $i")
+));
 
 class MyApp extends StatelessWidget {
+
+  final List<String> items;
+
+  MyApp({Key key, @required this.items}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '水平列表示例',
+      title: '长列表示例',
       home: Scaffold(
         appBar: new AppBar(
-          title: new Text("水平列表示例"),
+          title: new Text("长列表示例"),
         ),
-        body: Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
-          height: 200.0,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                width: 160.0,
-                color: Colors.lightBlue,
+        body: new ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return new ListTile(
+              leading: new Icon(Icons.phone),
+              title: new Text(
+                "${items[index]}"
               ),
-              Container(
-                width: 160.0,
-                color: Colors.amber,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.green,
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "水平",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 36.0
-                      ),
-                    ),
-                    Text(
-                      "列表",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 36.0
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.deepPurple,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.black,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.pinkAccent,
-              ),
-            ],
-          ),
+            );
+          },
         )
       )
     );
