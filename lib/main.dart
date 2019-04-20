@@ -13,21 +13,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '长列表示例',
+      title: '网络列表示例',
       home: Scaffold(
         appBar: new AppBar(
-          title: new Text("长列表示例"),
+          title: new Text("网络列表示例"),
         ),
-        body: new ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return new ListTile(
-              leading: new Icon(Icons.phone),
-              title: new Text(
-                "${items[index]}"
-              ),
-            );
-          },
+        body: new GridView.count(
+          primary: false,
+          padding: EdgeInsets.all(20.0),
+          crossAxisSpacing: 30.0,
+          crossAxisCount: 3,
+          children: <Widget>[
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+            const Text("AAAAAAAAAAAAAAA"),
+          ],
         )
       )
     );
