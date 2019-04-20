@@ -7,16 +7,74 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RaisedButton示例',
+      title: '基础列表示例',
       home: Scaffold(
         appBar: new AppBar(
-          title: new Text("RaisedButton示例"),
+          title: new Text("基础列表示例"),
         ),
-        body: new Center(
-          child: new RaisedButton(
-            onPressed: () {},
-            child: new Text("RaisedButton示例"),
-          )
+        body: new ListView(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: new Text("Phone"),
+            ),
+          ],
         )
       )
     );
