@@ -1,39 +1,35 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'dart:io';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-
-  void getWeatherData() async{
-    try {
-      var httpClient = new HttpClient();
-      var httpClientRequest = await httpClient.getUrl(Uri.parse("http://t.weather.sojson.com/api/weather/city/101030100"));
-      var httpClientResponse = await httpClientRequest.close();
-      var s = await httpClientResponse.transform(utf8.decoder).join();
-      print(s);
-      httpClient.close();
-    } catch(e) {
-      print("请求失败：$e");
-    } finally {
-
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'httpclient请求',
+      title: '容器组件示例',
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('httpclient请求'),
+          title: new Text('容器组件示例'),
         ),
         body: new Center(
-          child: new RaisedButton(
-            onPressed: getWeatherData,
-            child: new Text('获取天气数据'),
+          child: Container(
+            width: 200.0,
+            height: 200.0,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: new Border.all(
+                color: Colors.grey,
+                width: 8.0
+              ),
+              borderRadius:
+                const BorderRadius.all(const Radius.circular(8.0))
+            ),
+            child: Text(
+              'Flutter',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 28.0),
+            ),
           ),
         ),
       )
