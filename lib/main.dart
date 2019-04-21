@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       home: MyHomePage(),
       title: "MeterialApp示例",
       routes: {
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
 class SecondPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text("这是第二页"),
       ),
       body: Center(
@@ -42,8 +42,8 @@ class SecondPage extends StatelessWidget{
 class FirstPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text("这是第一页"),
       ),
       body: Center(
@@ -63,15 +63,15 @@ class FirstPage extends StatelessWidget{
 
 class MyHomePage extends StatefulWidget{
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
   }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("MeterialApp示例"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("MeterialApp示例"),
       ),
       body: Center(
         child: Text(
