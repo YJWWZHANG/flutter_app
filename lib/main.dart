@@ -6,57 +6,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
-      title: "MeterialApp示例",
-      routes: {
-        "/first": (BuildContext context) => FirstPage(),
-        "/second": (BuildContext context) => SecondPage(),
-      },
-      initialRoute: "/first",
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("这是第二页"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/first");
-          },
-          child: Text(
-            "这是第二页",
-            style: TextStyle(fontSize: 28.0),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FirstPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("这是第一页"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/second");
-          },
-          child: Text(
-            "这是第一页",
-            style: TextStyle(fontSize: 28.0),
-          ),
-        ),
-      ),
+      home: Scaffold(
+        body: MyHomePage(),
+      )
     );
   }
 }
@@ -67,19 +19,40 @@ class MyHomePage extends StatefulWidget{
   }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  var _widgetOptions = [
+    Text("Index 0：信息"),
+    Text("Index 1：通讯录"),
+    Text("Index 2：发现"),
+  ];
+  int _selectIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MeterialApp示例"),
+        title: Text("BottomNavigationBar示例"),
       ),
       body: Center(
-        child: Text(
-          "主页",
-          style: TextStyle(fontSize: 28.0),
-        ),
+        child: _widgetOptions.elementAt(_selectIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.chat), title: Text("信息")),
+          BottomNavigationBarItem(icon: Icon(Icons.contacts), title: Text("通讯录")),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("发现")),
+        ],
+        currentIndex: _selectIndex,
+        fixedColor: Colors.deepPurple,
+        onTap: _onItemTapped,
       ),
     );
+  }
+
+  void _onItemTapped(int value) {
+    setState(() {
+      _selectIndex = value;
+    });
   }
 }
 
