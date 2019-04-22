@@ -1,63 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(TabBarSample());
 
-class MyApp extends StatelessWidget {
+class TabBarSample extends StatelessWidget {
+
+  List<ItemView> items = <ItemView> [
+    ItemView(title: "自驾", icon: Icons.directions_car),
+    ItemView(title: "自行车", icon: Icons.directions_bike),
+    ItemView(title: "轮船", icon: Icons.directions_boat),
+    ItemView(title: "公交车", icon: Icons.directions_bus),
+    ItemView(title: "火车", icon: Icons.directions_railway),
+    ItemView(title: "步行", icon: Icons.directions_walk),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: MyHomePage(),
-      )
+      home: DefaultTabController(
+        length: items.length,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("TabBar选项卡示例"),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: items.map((ItemView item) {
+                return Tab(
+                  text: item.title,
+                  icon: Icon(item.icon)
+                );
+              }).toList(),
+            ),
+          ),
+          body: TabBarView(
+            children: items.map((ItemView item) {
+              return Padding(
+                padding: EdgeInsets.all(16.0),
+                child: SelectedView(item: item),
+              );
+            }).toList(),
+          ),
+        ),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget{
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-  }
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  var _widgetOptions = [
-    Text("Index 0：信息"),
-    Text("Index 1：通讯录"),
-    Text("Index 2：发现"),
-  ];
-  int _selectIndex = 1;
+class SelectedView extends StatelessWidget {
+  ItemView item;
+  SelectedView({Key key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("BottomNavigationBar示例"),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.chat), title: Text("信息")),
-          BottomNavigationBarItem(icon: Icon(Icons.contacts), title: Text("通讯录")),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("发现")),
-        ],
-        currentIndex: _selectIndex,
-        fixedColor: Colors.deepPurple,
-        onTap: _onItemTapped,
+    var testStyle = Theme.of(context).textTheme.display1;
+    return Card(
+      color: Colors.white,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Icon(item.icon, size: 128.0, color: testStyle.color),
+            Text(item.title, style: testStyle)
+          ],
+        ),
       ),
     );
   }
 
-  void _onItemTapped(int value) {
-    setState(() {
-      _selectIndex = value;
-    });
-  }
+
 }
 
-
-
+class ItemView {
+  String title;
+  IconData icon;
+  ItemView({this.title, this.icon});
+}
 
 
 
