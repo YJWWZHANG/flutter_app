@@ -2,52 +2,42 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(
   MaterialApp(
-    title: "Drawer抽屉组件示例",
-    home: LayoutDemo(),
+    title: "FloatingActionButton示例",
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("FloatingActionButton示例"),
+      ),
+      body: Center(
+        child: Text(
+          "",
+          style: TextStyle(fontSize: 28.0),
+        ),
+      ),
+      floatingActionButton: Builder(
+        builder: (BuildContext context){
+          return FloatingActionButton(
+            child: Icon(Icons.add),
+            tooltip: "请点击FloatingActionButton",
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.blue,
+            elevation: 7.0,
+            highlightElevation: 14.0,
+            onPressed: () {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(content: Text("你点击了FloatingActionButton"))
+              );
+            },
+            mini: false,
+            shape: CircleBorder(),
+            isExtended: false,
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    )
   )
 );
 
-class LayoutDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Drawer抽屉组件示例"),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("示例"),
-              accountEmail: Text("123@qq.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("images/1.jpeg"),
-              ),
-              onDetailsPressed: () {},
-              otherAccountsPictures: <Widget>[
-                Container(
-                  child: Image.asset("images/1.jpeg"),
-                )
-              ],
-            ),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.color_lens)),
-              title: Text("个性装扮"),
-            ),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.phone)),
-              title: Text("我的相册"),
-            ),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.wifi)),
-              title: Text("免流量特权"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 
 
