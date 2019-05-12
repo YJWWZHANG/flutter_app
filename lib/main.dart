@@ -1,54 +1,46 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-enum ConferenceItem { AddMember, LockConference, ModifyLayout, TurnoffAll }
+void main() => runApp(MaterialApp(
+  title: "Card布局示例",
+  home: MyApp(),
+));
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var controller = TextEditingController();
-    controller.addListener((){
-      print("你输入的内容为：${controller.text}");
-    });
-    return MaterialApp(
-      title: "TextField组件示例",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("TextField组件示例"),
-        ),
-        body: Center(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: TextField(
-              controller: controller,
-              maxLength: 30,
-              maxLines: 1,
-              autocorrect: true,
-              autofocus: true,
-              obscureText: false,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 26.0,
-                color: Colors.green
+    var card = SizedBox(
+      height: 250.0,
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                "深圳市南山区深南大道35号",
+                style: TextStyle(fontWeight: FontWeight.w300),
               ),
-              onChanged: (text) {
-                print("文本内容改变时回调$text");
-              },
-              onSubmitted: (text) {
-                print("内容提交时回调$text");
-              },
-              enabled: true,
-              decoration: InputDecoration(
-                fillColor: Colors.grey.shade200,
-                filled: true,
-                helperText: "用户名",
-                prefixIcon: Icon(Icons.person),
-                suffixText: "用户名"
-              ),
+              subtitle: Text("创想科技有限公司"),
+              leading: Icon(Icons.home, color: Colors.lightBlue),
             ),
-          ),
+            Divider(),
+            ListTile(
+              title: Text(
+                "深圳市南山区深南大道32号",
+                style: TextStyle(fontWeight: FontWeight.w300),
+              ),
+              subtitle: Text("一木培训机构"),
+              leading: Icon(Icons.school, color: Colors.lightBlue),
+            ),
+            Divider(),
+          ],
         ),
+      ),
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Card布局示例"),
+      ),
+      body: Center(
+        child: card,
       ),
     );
   }
