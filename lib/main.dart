@@ -2,33 +2,44 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+enum ConferenceItem { AddMember, LockConference, ModifyLayout, TurnoffAll }
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Welcone to Flutter",
+      title: "PopupMenuButton组件示例",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("FlatButton扁平按钮组件示例"),
+          title: Text("PopupMenuButton组件示例"),
         ),
         body: Center(
           child: FlatButton(
               onPressed: () {},
-              child: Text(
-                "FlatButton",
-                style: TextStyle(
-                  fontSize: 24.0
-                ),
-              )
-          ),
+              child: PopupMenuButton<ConferenceItem>(
+                  onSelected: (ConferenceItem result) {},
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<ConferenceItem>> [
+                        PopupMenuItem<ConferenceItem>(
+                          value: ConferenceItem.AddMember,
+                            child: Text("添加成员"),
+                        ),
+                        PopupMenuItem<ConferenceItem>(
+                          value: ConferenceItem.LockConference,
+                            child: Text("锁定会议"),
+                        ),
+                        PopupMenuItem<ConferenceItem>(
+                          value: ConferenceItem.ModifyLayout,
+                            child: Text("修改布局"),
+                        ),
+                        PopupMenuItem<ConferenceItem>(
+                          value: ConferenceItem.TurnoffAll,
+                            child: Text("挂断所有"),
+                        )
+                      ]
+              )),
         ),
       ),
     );
   }
 }
-
-
-
-
-
